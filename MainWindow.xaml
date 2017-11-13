@@ -1,0 +1,331 @@
+﻿<Window x:Class="CompanyApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="Страховая компания"
+        WindowState="Maximized"
+        MinWidth="800" 
+        MinHeight="600">
+    <!--WindowStyle="None"
+    -->
+    <Window.Resources>
+        <Style BasedOn="{StaticResource {x:Type TextBox}}" TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="Bd" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                SnapsToDevicePixels="true">
+                            <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style BasedOn="{StaticResource {x:Type TextBox}}" TargetType="{x:Type xctk:MaskedTextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type xctk:MaskedTextBox}">
+                        <Border x:Name="Bd" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                SnapsToDevicePixels="true">
+                            <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="21"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="24"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!-- Menu -->
+            <Menu Grid.Column="0" Grid.Row="0">
+                <MenuItem Header="Client">
+                    <MenuItem Header="New client" >
+                        <MenuItem Header="Individual" Click="IndividualForm_Click" />
+                        <MenuItem Header="Company" Click="CompanyForm_Click" />
+                    </MenuItem>
+                    <MenuItem Header="New policy" Click="PolicyForm_Click" />
+                </MenuItem>
+                <MenuItem Header="Category">
+                    <MenuItem Header="New category" Click="CategoryForm_Click" />
+                </MenuItem>
+                <MenuItem Header="Accident">
+                    <MenuItem Header="New accident" Click="AccidentForm_Click" />
+                    <MenuItem Header="Add accident to the client" Click="ClientAccidentForm_Click" />
+                </MenuItem>
+                <MenuItem Header="Info">
+                    <MenuItem Header="Client's info" Click="ClientInfoForm_Click" />
+                    <MenuItem Header="Category info" />
+                    <Separator />
+                    <MenuItem Header="About program" Click="AboutProgram_Click" />
+                </MenuItem>
+            </Menu>
+            <!-- Layout -->
+            <Grid x:Name="BackgroundForm" Grid.Row="1" Visibility="Visible">
+                <Image x:Name="BackgroundImg_Image"></Image>
+            </Grid>
+            <!-- ClientForm -->
+            <Grid x:Name="ClientForm" Grid.Row="1" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="26"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="26"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="26"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="26"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBox Grid.Column="1" Grid.Row="1" x:Name="FirstnameIndividual_TextBox" Grid.ColumnSpan="7" GotFocus="FirstnameIndividual_GotFocus" LostFocus="FirstnameIndividual_LostFocus" TextChanged="FirstnameIndividual_TextChanged" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">First Name</TextBox>
+                <TextBox Grid.Column="1" Grid.Row="3" x:Name="LastnameIndividual_TextBox" Grid.ColumnSpan="7" GotFocus="LastnameIndividual_GotFocus" LostFocus="LastnameIndividual_LostFocus" TextChanged="LastnameIndividual_TextChanged" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">Last Name</TextBox>
+                <TextBox Grid.Column="1" Grid.Row="5" x:Name="ThirdnameIndividual_TextBox" Grid.ColumnSpan="7" GotFocus="ThirdnameIndividual_GotFocus" LostFocus="ThirdnameIndividual_LostFocus" TextChanged="TrirdnameIndividual_TextChanged" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">Third Name</TextBox>
+                <DatePicker Grid.Column="1" Grid.Row="7" x:Name="DataBirthdayIndividual_DatePicker" Grid.ColumnSpan="7" SelectedDateChanged="DataBirthdayIndividual_SelectedDateChanged" LostFocus="DataBirthdayIndividual_LostFocus" Foreground="Silver" BorderBrush="Silver" Background="White"></DatePicker>
+                <ComboBox Grid.Column="1" Grid.Row="9" x:Name="SexIndividual_ComboBox" Grid.ColumnSpan="7" LostFocus="SexIndividual_LostFocus" BorderBrush="Silver" Background="White">
+                    <TextBlock>Male</TextBlock>
+                    <TextBlock>Female</TextBlock>
+                </ComboBox>
+                <TextBox Grid.Column="1" Grid.Row="11" x:Name="AddressIndividual_TextBox" Grid.ColumnSpan="7" GotFocus="AddressIndividual_GotFocus" LostFocus="AddressIndividual_LostFocus" TextChanged="AddressIndividual_TextChanged" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3"></TextBox>
+                <xctk:MaskedTextBox Grid.Column="1" Grid.Row="13" x:Name="PhoneIndividual_TextBox" Grid.ColumnSpan="7" GotFocus="PhoneIndividual_GotFocus" LostFocus="PhoneIndividual_LostFocus" TextChanged="PhoneIndividual_TextChanged" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3" Mask="+375 (00) 000-00-00"></xctk:MaskedTextBox>
+                <TextBox Grid.Column="1" Grid.Row="15" x:Name="DriveExperienceIndividual_TextBox" Grid.ColumnSpan="7" GotFocus="DriveExperienceIndividual_GotFocus" LostFocus="DriveExperienceIndividual_LostFocus" TextChanged="DriveExperienceIndividual_TextChanged" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3" MaxLength="2">Drive experience</TextBox>
+                <Image Grid.Column="1" Grid.Row="17" Grid.ColumnSpan="1" x:Name="ImgIndividual_Image"></Image>
+                <TextBox Grid.Column="3" Grid.Row="17" Grid.ColumnSpan="3" x:Name="SourceImgIndividual_TextBox" GotFocus="SourceImgIndividual_GotFocus" LostFocus="SourceImgIndividual_LostFocus" TextChanged="SourceImgIndividual_TextChanged" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">Source</TextBox>
+                <Button  Grid.Column="7" Grid.Row="17" Click="OpenFileDialog_Click" >Open</Button>
+                <Button Grid.Column="1" Grid.Row="19" Grid.ColumnSpan="3" Click="SaveIndividual_Click" Padding="5 5 5 5" IsDefault="True">Save</Button>
+                <Button Grid.Column="5" Grid.Row="19" Grid.ColumnSpan="3" Click="CancelIndividual_Click" Padding="5 5 5 5" IsCancel="True">Cancel</Button>
+            </Grid>            
+            <!-- CompanyForm -->
+            <Grid x:Name="CompanyForm" Grid.Row="1" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="26"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="26"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="26"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="26"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBox Grid.Column="1" Grid.Row="1" x:Name="NameCompany_TextBox" Grid.ColumnSpan="3" GotFocus="NameCompany_GotFocus" LostFocus="NameCompany_LostFocus" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">Company name</TextBox>
+                <TextBox Grid.Column="1" Grid.Row="3" x:Name="UNNCompany_TextBox" Grid.ColumnSpan="3" GotFocus="UNNCompany_GotFocus" LostFocus="UNNCompany_LostFocus" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">Company UNN</TextBox>
+                <TextBox Grid.Column="1" Grid.Row="5" x:Name="BossFirstname_TextBox" Grid.ColumnSpan="3" GotFocus="BossFirstname_GotFocus" LostFocus="BossFirstname_LostFocus" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">Boss firstname</TextBox>
+                <TextBox Grid.Column="1" Grid.Row="7" x:Name="BossLastname_TextBox" Grid.ColumnSpan="3" GotFocus="BossLastname_GotFocus" LostFocus="BossLastname_LostFocus" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">Boss lastname</TextBox>
+                <TextBox Grid.Column="1" Grid.Row="9" x:Name="BossThirdname_TextBox" Grid.ColumnSpan="3" GotFocus="BossThirdname_GotFocus" LostFocus="BossThirdname_LostFocus" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">Boss thirdname</TextBox>
+                <TextBox Grid.Column="1" Grid.Row="11" x:Name="AccountantFirstname_TextBox" Grid.ColumnSpan="3" GotFocus="AccountantFirstname_GotFocus" LostFocus="AccountantFirstname_LostFocus" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">Accountant firstname</TextBox>
+                <TextBox Grid.Column="1" Grid.Row="13" x:Name="AccountantLastname_TextBox" Grid.ColumnSpan="3" GotFocus="AccountantLastname_GotFocus" LostFocus="AccountantLastname_LostFocus" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">Accountant lastname</TextBox>
+                <TextBox Grid.Column="1" Grid.Row="15" x:Name="AccountantThirdname_TextBox" Grid.ColumnSpan="3" GotFocus="AccountantThirdname_GotFocus" LostFocus="AccountantThirdname_LostFocus" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">Accountant thirdname</TextBox>
+                <TextBox Grid.Column="1" Grid.Row="17" x:Name="AddressCompany_TextBox" Grid.ColumnSpan="3" GotFocus="AddressCompany_GotFocus" LostFocus="AddressCompany_LostFocus" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">Address</TextBox>
+                <TextBox Grid.Column="1" Grid.Row="19" x:Name="PhoneCompany_TextBox" Grid.ColumnSpan="3" GotFocus="PhoneCompany_GotFocus" LostFocus="PhoneCompany_LostFocus" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">Phone</TextBox>
+                <Button Grid.Column="1" Grid.Row="21" Grid.ColumnSpan="1" Click="SaveCompany_Click" Padding="5 5 5 5" IsDefault="True">Save</Button>
+                <Button Grid.Column="3" Grid.Row="21" Grid.ColumnSpan="1" Click="CancelCompany_Click" Padding="5 5 5 5" IsCancel="True">Cancel</Button>
+            </Grid>
+            <!-- PolicyForm -->
+            <Grid x:Name="PolicyForm" Grid.Row="1" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBox Grid.Column="1" Grid.Row="1" x:Name="ClientPolicy_TextBox" Grid.ColumnSpan="3" GotFocus="ClientPolicy_GotFocus" LostFocus="ClientPolicy_LostFocus" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">Client ID</TextBox>
+                <ComboBox Grid.Column="1" Grid.Row="3" x:Name="CategoryPolicy_ComboBox" Grid.ColumnSpan="3" BorderBrush="Silver" Background="White"></ComboBox>
+                <DatePicker Grid.Column="1" Grid.Row="5" x:Name="DataStartPolicy_DatePicker" Grid.ColumnSpan="1" Foreground="Silver" BorderBrush="Silver" Background="White"></DatePicker>
+                <DatePicker Grid.Column="3" Grid.Row="5" x:Name="DataFinishPolicy_DatePicker" Grid.ColumnSpan="1" Foreground="Silver" BorderBrush="Silver" Background="White"></DatePicker>
+                <TextBox Grid.Column="1" Grid.Row="7" x:Name="SumPolicy_TextBox" Grid.ColumnSpan="3" GotFocus="SumPolicy_GotFocus" LostFocus="SumPolicy_LostFocus" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">Policy sum</TextBox>
+                <TextBox Grid.Column="1" Grid.Row="9" x:Name="PricePolicy_TextBox" Grid.ColumnSpan="3" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3" IsReadOnly="True">Policy price</TextBox>
+                <Button Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="1" Click="SavePolicy_Click" Padding="5 5 5 5" IsDefault="True">Save</Button>
+                <Button Grid.Column="3" Grid.Row="11" Grid.ColumnSpan="1" Click="CancelPolicy_Click" Padding="5 5 5 5" IsCancel="True">Cancel</Button>
+            </Grid>
+            <!-- CategoryForm -->
+            <Grid x:Name="CategoryForm" Grid.Row="1" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBox Grid.Column="1" Grid.Row="1" x:Name="NameCategory_TextBox" Grid.ColumnSpan="3" GotFocus="NameCategory_GotFocus" LostFocus="NameCategory_LostFocus" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">Category name</TextBox>
+                <ComboBox Grid.Column="1" Grid.Row="3" x:Name="AccidentCategory_ComboBox" Grid.ColumnSpan="3" BorderBrush="Silver" Background="White"></ComboBox>
+                <TextBox Grid.Column="1" Grid.Row="5" x:Name="MaxSumCategory_TextBox" Grid.ColumnSpan="3" GotFocus="MaxSumCategory_GotFocus" LostFocus="MaxSumCategory_LostFocus" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">The maximum sum</TextBox>
+                <TextBox Grid.Column="1" Grid.Row="7" x:Name="MaxCountDaysCategory_TextBox" Grid.ColumnSpan="3" GotFocus="MaxCountDaysCategory_GotFocus" LostFocus="MaxCountDaysCategory_LostFocus" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">The maximum counts of days</TextBox>
+                <Button Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="1" Click="SaveCategory_Click" Padding="5 5 5 5" IsDefault="True">Save</Button>
+                <Button Grid.Column="3" Grid.Row="9" Grid.ColumnSpan="1" Click="CancelCategory_Click" Padding="5 5 5 5" IsCancel="True">Cancel</Button>
+            </Grid>
+            <!-- AccidentForm -->
+            <Grid x:Name="AccidentForm" Grid.Row="1" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBox Grid.Column="1" Grid.Row="1" x:Name="NameAccident_TextBox" Grid.ColumnSpan="3" GotFocus="NameAccident_GotFocus" LostFocus="NameAccident_LostFocus" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">Accident name</TextBox>
+                <TextBox Grid.Column="1" Grid.Row="3" x:Name="PercentAccident_TextBox" Grid.ColumnSpan="3" GotFocus="PercentAccident_GotFocus" LostFocus="PercentAccident_LostFocus" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">Percent</TextBox>
+                <Button Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="1" Click="SaveAccident_Click" Padding="5 5 5 5" IsDefault="True">Save</Button>
+                <Button Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="1" Click="CancelAccident_Click" Padding="5 5 5 5" IsCancel="True">Cancel</Button>
+            </Grid>
+            <!-- ClientAccidentForm -->
+            <Grid x:Name="ClientAccidentForm" Grid.Row="1" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBox Grid.Column="1" Grid.Row="1" x:Name="ClientClientAccident_TextBox" Grid.ColumnSpan="3" GotFocus="ClientClientAccident_GotFocus" LostFocus="ClientClientAccident_LostFocus" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">Client ID</TextBox>
+                <ComboBox Grid.Column="1" Grid.Row="3" x:Name="AccidentClientAccident_ComboBox" Grid.ColumnSpan="3" BorderBrush="Silver" Background="White"></ComboBox>
+                <DatePicker Grid.Column="1" Grid.Row="5" x:Name="DataClientAccident_DatePicker" Grid.ColumnSpan="3" Foreground="Silver" BorderBrush="Silver" Background="White"></DatePicker>
+                <Button Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="1" Click="SaveClientAccident_Click" Padding="5 5 5 5" IsDefault="True">Save</Button>
+                <Button Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="1" Click="CancelClientAccident_Click" Padding="5 5 5 5" IsCancel="True">Cancel</Button>
+            </Grid>
+            <!-- ClientsInfoForm -->
+            <Grid x:Name="ClientInfoForm" Grid.Row="1" Visibility="Collapsed">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MaxHeight="13"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBox Grid.Column="1" Grid.Row="1" x:Name="ClientIdInfo_TextBox" Grid.ColumnSpan="5" GotFocus="ClientIdInfo_GotFocus" LostFocus="ClientIdInfo_LostFocus" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">Client ID</TextBox>
+                <CheckBox Grid.Column="1" Grid.Row="3" x:Name="AllClient_CheckBox" Grid.ColumnSpan="5" IsThreeState="False" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Content=" Info about all clients" Checked="AllClient_Checked" Unchecked="AllClient_Unchecked" />
+                <TextBox Grid.Column="1" Grid.Row="5" x:Name="SourceInfo_TextBox" Grid.ColumnSpan="3" GotFocus="SourceInfo_GotFocus" LostFocus="SourceInfo_LostFocus" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">Source</TextBox>
+                <Button Grid.Column="5" Grid.Row="5" Grid.ColumnSpan="1" Click="OpenFileDownload_Click" Padding="5 5 5 5" IsDefault="True">Open</Button>
+                <Button Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="1" Click="SaveClientAccident_Click" Padding="5 5 5 5" IsDefault="True">Save</Button>
+                <Button Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="3" Click="CancelClientAccident_Click" Padding="5 5 5 5" IsCancel="True">Cancel</Button>
+            </Grid>
+            <!--<ComboBox Grid.Row="1" x:Name="CB" TextBoxBase.TextChanged="OnComboboxTextChanged" IsTextSearchEnabled="False" IsEditable="True" VerticalAlignment="Top">
+                <TextBlock>Apple</TextBlock>
+                <TextBlock>Application</TextBlock>
+                <TextBlock>Bananas</TextBlock>
+                <TextBlock>Boris</TextBlock>
+                <TextBlock>Curcuma</TextBlock>
+            </ComboBox>-->
+            <!-- Status Bar -->
+            <Grid  Grid.Row="2" x:Name="StatusBar" Background="Black" Visibility="Visible">
+                <TextBlock Grid.Column="1" Grid.Row="1" x:Name="StatusBar_TextBlock" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Status Bar"></TextBlock>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
