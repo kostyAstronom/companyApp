@@ -76,7 +76,7 @@
                 <Image x:Name="BackgroundImg_Image"></Image>
             </Grid>
             <!-- ClientForm -->
-            <Grid x:Name="ClientForm" Grid.Row="1" Visibility="Collapsed">
+            <Grid x:Name="ClientForm" Grid.Row="1" Visibility="Visible">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10*"></ColumnDefinition>
                     <ColumnDefinition Width="1.5*"></ColumnDefinition>
@@ -111,11 +111,31 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBox Grid.Column="1" Grid.Row="1" x:Name="FirstnameIndividual_TextBox" Grid.ColumnSpan="7" GotFocus="FirstnameIndividual_GotFocus" LostFocus="FirstnameIndividual_LostFocus" TextChanged="FirstnameIndividual_TextChanged" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">First Name</TextBox>
-                <TextBox Grid.Column="1" Grid.Row="3" x:Name="LastnameIndividual_TextBox" Grid.ColumnSpan="7" GotFocus="LastnameIndividual_GotFocus" LostFocus="LastnameIndividual_LostFocus" TextChanged="LastnameIndividual_TextChanged" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">Last Name</TextBox>
-                <TextBox Grid.Column="1" Grid.Row="5" x:Name="ThirdnameIndividual_TextBox" Grid.ColumnSpan="7" GotFocus="ThirdnameIndividual_GotFocus" LostFocus="ThirdnameIndividual_LostFocus" TextChanged="TrirdnameIndividual_TextChanged" Foreground="Silver" FontStyle="Italic" BorderBrush="Silver" Padding="2 3 2 3">Third Name</TextBox>
-                <DatePicker Grid.Column="1" Grid.Row="7" x:Name="DataBirthdayIndividual_DatePicker" Grid.ColumnSpan="7" SelectedDateChanged="DataBirthdayIndividual_SelectedDateChanged" LostFocus="DataBirthdayIndividual_LostFocus" Foreground="Silver" BorderBrush="Silver" Background="White"></DatePicker>
-                <ComboBox Grid.Column="1" Grid.Row="9" x:Name="SexIndividual_ComboBox" Grid.ColumnSpan="7" LostFocus="SexIndividual_LostFocus" BorderBrush="Silver" Background="White">
+                <TextBox Grid.Column="1" Grid.Row="1" x:Name="FirstnameIndividual_TextBox" Grid.ColumnSpan="7" GotFocus="FirstnameIndividual_GotFocus" LostFocus="FirstnameIndividual_LostFocus" TextChanged="FirstnameIndividual_TextChanged" Foreground="Silver" BorderBrush="Silver" Padding="2 3 2 3">First Name</TextBox>
+                <TextBox Grid.Column="1" Grid.Row="3" x:Name="LastnameIndividual_TextBox" Grid.ColumnSpan="7" GotFocus="LastnameIndividual_GotFocus" LostFocus="LastnameIndividual_LostFocus" TextChanged="LastnameIndividual_TextChanged" Foreground="Silver" BorderBrush="Silver" Padding="2 3 2 3">Last Name</TextBox>
+                <TextBox Grid.Column="1" Grid.Row="5" x:Name="ThirdnameIndividual_TextBox" Grid.ColumnSpan="7" GotFocus="ThirdnameIndividual_GotFocus" LostFocus="ThirdnameIndividual_LostFocus" TextChanged="TrirdnameIndividual_TextChanged" Foreground="Silver" BorderBrush="Silver" Padding="2 3 2 3">Third Name</TextBox>
+                <!--<DatePicker Grid.Column="1" Grid.Row="7" x:Name="DataBirthdayIndividual_DatePicker" Grid.ColumnSpan="7" SelectedDateChanged="DataBirthdayIndividual_SelectedDateChanged" LostFocus="DataBirthdayIndividual_LostFocus" Foreground="Silver" BorderBrush="Silver" Background="White"></DatePicker>
+               -->
+                <xctk:DateTimePicker Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="7" Foreground="Silver" BorderBrush="Silver"
+                                     x:Name="DataBirthdayIndividual_DateTimePicker"
+                                     GotFocus="DataBirthdayIndividual_GotFocus"
+                                     LostFocus="DataBirthdayIndividual_LostFocus"
+                                     ValueChanged="DataBirthdayIndividual_SelectedDataContextChanged"
+                                     
+                                     IsReadOnly="False"
+                                     Format="LongDate"
+                                     Watermark="Date Birthday"
+                                     AutoCloseCalendar="True"
+                                     ClipValueToMinMax="True"
+                                     TimePickerVisibility="Collapsed"
+                                     Kind="Local"
+                                     CalendarDisplayMode="Decade"
+                                     ></xctk:DateTimePicker>
+                                     <!--
+                                     Maximum="{Binding Value, ElementName=_maximum}"
+                                     CalendarWidth="{Binding Value, ElementName=_calendarWidth}"
+                                      -->
+                <ComboBox Grid.Column="1" Grid.Row="9" SelectedIndex="1" x:Name="SexIndividual_ComboBox" Grid.ColumnSpan="7" LostFocus="SexIndividual_LostFocus" BorderBrush="Silver" Background="White">
                     <TextBlock>Male</TextBlock>
                     <TextBlock>Female</TextBlock>
                 </ComboBox>

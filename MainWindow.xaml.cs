@@ -37,22 +37,20 @@ namespace CompanyApp
             ClientInfoForm.Visibility = Visibility.Collapsed;
         }
 
-        /*void OnComboboxTextChanged(object sender, RoutedEventArgs e)
-        {
-            CB.IsDropDownOpen = true;
-            // убрать selection, если dropdown только открылся
-            var tb = (TextBox)e.OriginalSource;
-            tb.Select(tb.SelectionStart + tb.SelectionLength, 0);
-            CollectionView cv = (CollectionView)CollectionViewSource.GetDefaultView(CB.ItemsSource);
-            cv.Filter = s =>
-                ((string)s).IndexOf(CB.Text, StringComparison.CurrentCultureIgnoreCase) >= 0;
-        }*/
+        ///////////////////////////////////////
+        ////            GRAPHICS           ////
+        ///////////////////////////////////////
+
+        // Brush
+        private Brush BlackSolidBrush = new SolidColorBrush(Colors.Black);
+        private Brush RedSolidBrush = new SolidColorBrush(Colors.Red);
+        private Brush SilverSolidBrush = new SolidColorBrush(Colors.Silver);
 
         ///////////////////////////////////////
         ////           INDIVIDUAL          ////
         ///////////////////////////////////////
 
-        // For check validation value
+        // For check validation enter value
         private bool CheckValidationFirstnameIndividual = false;
         private bool CheckValidationLastnameIndividual = false;
         private bool CheckValidationThirdnameIndividual = false;
@@ -63,22 +61,30 @@ namespace CompanyApp
         private bool CheckValidationDriveExperienceIndividual = false;
         private bool CheckValidationSourceImgIndividual = false;
 
+        // Call IndividualForm
         private void IndividualForm_Click(object sender, RoutedEventArgs e)
         {
             CloseAllGrid();
             ClientForm.Visibility = Visibility.Visible;
 
-            // Clean old and set defaul value
+            // Clean old value
             ClearIndividual_Click(null, null);
-            DataBirthdayIndividual_DatePicker.DisplayDateEnd = DateTime.Today;
+
+            // Set defaul 
+            DataBirthdayIndividual_DateTimePicker.Maximum = DateTime.Today;
+            DataBirthdayIndividual_DateTimePicker.Minimum = new DateTime(DateTime.Today.Year - 100, DateTime.Today.Month, DateTime.Today.Day);
+
+            // Set focus
+            FirstnameIndividual_TextBox.Focus();
         }
 
         // Got and lost focus FirstnameIndividual
         private void FirstnameIndividual_GotFocus(object sender, RoutedEventArgs e)
         {
-            ((TextBox)sender).Foreground = new SolidColorBrush(Colors.Black);
-            ((TextBox)sender).FontStyle = FontStyles.Normal;
+            ((TextBox)sender).Foreground = BlackSolidBrush;
             ((TextBox)sender).Text = "";
+
+            // Delete got focus handler
             ((TextBox)sender).GotFocus -= FirstnameIndividual_GotFocus;
         }
 
@@ -86,44 +92,42 @@ namespace CompanyApp
         {
             if (((TextBox)sender).Text == "")
             {
-                // Return default value
-                ((TextBox)sender).BorderBrush = new SolidColorBrush(Colors.Silver);
-                ((TextBox)sender).Foreground = new SolidColorBrush(Colors.Silver);
-                ((TextBox)sender).FontStyle = FontStyles.Italic;
+                // Set default value
+                ((TextBox)sender).BorderBrush = SilverSolidBrush;
+                ((TextBox)sender).Foreground = SilverSolidBrush;
                 ((TextBox)sender).Text = "First Name";
+
+                // Add got focus hendler
                 ((TextBox)sender).GotFocus += FirstnameIndividual_GotFocus;
-                CheckValidationFirstnameIndividual = false;
             }
         }
 
         private void FirstnameIndividual_TextChanged(object sender, RoutedEventArgs e)
         {
-            // Check validation enter value
-            bool ResultValidation = true;
-            if (((TextBox)sender).Text == "")
+            if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == "First Name")
             {
                 CheckValidationFirstnameIndividual = false;
             }
-            else if (((TextBox)sender).Text == "First Name")
+            else
             {
-                CheckValidationFirstnameIndividual = false;
-            } else
-            {
+                // For check validation enter value
+                bool ResultValidation = true;
                 for (int i = 0; i < ((TextBox)sender).Text.Length; ++i)
                 {
-                    if (!char.IsLetter(((TextBox)sender).Text[i]))
+                    if (!(char.IsLetter(((TextBox)sender).Text[i]) || ((TextBox)sender).Text[i] == '-'))
                     {
                         ResultValidation = false;
                     }
                 }
+                // Processing of the results validation
                 if (ResultValidation)
                 {
-                    ((TextBox)sender).BorderBrush = new SolidColorBrush(Colors.Silver);
+                    ((TextBox)sender).BorderBrush = SilverSolidBrush;
                     CheckValidationFirstnameIndividual = true;
                 }
                 else
                 {
-                    ((TextBox)sender).BorderBrush = new SolidColorBrush(Colors.Red);
+                    ((TextBox)sender).BorderBrush = RedSolidBrush;
                     CheckValidationFirstnameIndividual = false;
                 }
             }
@@ -132,9 +136,10 @@ namespace CompanyApp
         // Got and lost focus LastnameIndividual
         private void LastnameIndividual_GotFocus(object sender, RoutedEventArgs e)
         {
-            ((TextBox)sender).Foreground = new SolidColorBrush(Colors.Black);
-            ((TextBox)sender).FontStyle = FontStyles.Normal;
+            ((TextBox)sender).Foreground = BlackSolidBrush;
             ((TextBox)sender).Text = "";
+
+            // Delete got focus handler
             ((TextBox)sender).GotFocus -= LastnameIndividual_GotFocus;
         }
 
@@ -142,45 +147,42 @@ namespace CompanyApp
         {
             if (((TextBox)sender).Text == "")
             {
-                // Return default value
-                ((TextBox)sender).BorderBrush = new SolidColorBrush(Colors.Silver);
-                ((TextBox)sender).Foreground = new SolidColorBrush(Colors.Silver);
-                ((TextBox)sender).FontStyle = FontStyles.Italic;
+                // Set default value
+                ((TextBox)sender).BorderBrush = SilverSolidBrush;
+                ((TextBox)sender).Foreground = SilverSolidBrush;
                 ((TextBox)sender).Text = "Last Name";
+
+                // Add got focus hendler
                 ((TextBox)sender).GotFocus += LastnameIndividual_GotFocus;
-                CheckValidationLastnameIndividual = false;
             }
         }
 
         private void LastnameIndividual_TextChanged(object sender, RoutedEventArgs e)
         {
-            // Check validation enter value
-            bool ResultValidation = true;
-            if (((TextBox)sender).Text == "")
-            {
-                CheckValidationLastnameIndividual = false;
-            }
-            else if (((TextBox)sender).Text == "Last Name")
+            if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == "Last Name")
             {
                 CheckValidationLastnameIndividual = false;
             }
             else
             {
+                // For check validation enter value
+                bool ResultValidation = true;
                 for (int i = 0; i < ((TextBox)sender).Text.Length; ++i)
                 {
-                    if (!char.IsLetter(((TextBox)sender).Text[i]))
+                    if (!(char.IsLetter(((TextBox)sender).Text[i]) || ((TextBox)sender).Text[i] == '-'))
                     {
                         ResultValidation = false;
                     }
                 }
+                // Processing of the results validation
                 if (ResultValidation)
                 {
-                    ((TextBox)sender).BorderBrush = new SolidColorBrush(Colors.Silver);
+                    ((TextBox)sender).BorderBrush = SilverSolidBrush;
                     CheckValidationLastnameIndividual = true;
                 }
                 else
                 {
-                    ((TextBox)sender).BorderBrush = new SolidColorBrush(Colors.Red);
+                    ((TextBox)sender).BorderBrush = RedSolidBrush;
                     CheckValidationLastnameIndividual = false;
                 }
             }
@@ -189,9 +191,10 @@ namespace CompanyApp
         // Got and lost focus ThirdameIndividual
         private void ThirdnameIndividual_GotFocus(object sender, RoutedEventArgs e)
         {
-            ((TextBox)sender).Foreground = new SolidColorBrush(Colors.Black);
-            ((TextBox)sender).FontStyle = FontStyles.Normal;
+            ((TextBox)sender).Foreground = BlackSolidBrush;
             ((TextBox)sender).Text = "";
+
+            // Delete got focus hendler
             ((TextBox)sender).GotFocus -= ThirdnameIndividual_GotFocus;
         }
 
@@ -199,87 +202,89 @@ namespace CompanyApp
         {
             if (((TextBox)sender).Text == "")
             {
-                // Return default value
-                ((TextBox)sender).BorderBrush = new SolidColorBrush(Colors.Silver);
-                ((TextBox)sender).Foreground = new SolidColorBrush(Colors.Silver);
-                ((TextBox)sender).FontStyle = FontStyles.Italic;
+                // Set default value
+                ((TextBox)sender).BorderBrush = SilverSolidBrush;
+                ((TextBox)sender).Foreground = SilverSolidBrush;
                 ((TextBox)sender).Text = "Third Name";
+
+                // Delete got focus hendler
                 ((TextBox)sender).GotFocus += ThirdnameIndividual_GotFocus;
-                CheckValidationThirdnameIndividual = false;
             }
         }
 
         private void TrirdnameIndividual_TextChanged(object sender, RoutedEventArgs e)
         {
-            // Check validation enter value
-            bool ResultValidation = true;
-            if (((TextBox)sender).Text == "")
-            {
-                CheckValidationThirdnameIndividual = false;
-            }
-            else if (((TextBox)sender).Text == "Third Name")
+            if (((TextBox)sender).Text == "" || ((TextBox)sender).Text == "Third Name")
             {
                 CheckValidationThirdnameIndividual = false;
             }
             else
             {
+                // For check validation enter value
+                bool ResultValidation = true;
                 for (int i = 0; i < ((TextBox)sender).Text.Length; ++i)
                 {
-                    if (!char.IsLetter(((TextBox)sender).Text[i]))
+                    if (!(char.IsLetter(((TextBox)sender).Text[i]) || ((TextBox)sender).Text[i] == '-'))
                     {
                         ResultValidation = false;
                     }
                 }
+                // Processing of the results validation
                 if (ResultValidation)
                 {
-                    ((TextBox)sender).BorderBrush = new SolidColorBrush(Colors.Silver);
+                    ((TextBox)sender).BorderBrush = SilverSolidBrush;
                     CheckValidationThirdnameIndividual = true;
                 }
                 else
                 {
-                    ((TextBox)sender).BorderBrush = new SolidColorBrush(Colors.Red);
+                    ((TextBox)sender).BorderBrush = RedSolidBrush;
                     CheckValidationThirdnameIndividual = false;
                 }
             }
         }
 
-        // Lost focus DataBirthdayIndividual
+        // Got and lost focus DataBirthdayIndividual
+        private void DataBirthdayIndividual_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ((DateTimePicker)sender).Foreground = BlackSolidBrush;
+            ((DateTimePicker)sender).Text = "";
+
+            // Delete got focus hendler
+            ((DateTimePicker)sender).GotFocus -= DataBirthdayIndividual_GotFocus;
+        }
+
         private void DataBirthdayIndividual_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (((DatePicker)sender).SelectedDate == null)
+            if (((DateTimePicker)sender).Text == "")
             {
-                // Return default value
-                ((DatePicker)sender).BorderBrush = new SolidColorBrush(Colors.Silver);
-                ((DatePicker)sender).Foreground = new SolidColorBrush(Colors.Silver);
-                ((DatePicker)sender).Text = "";
-                ((DatePicker)sender).FontStyle = FontStyles.Italic;
-                CheckValidationDataBirthdayIndividual = false;
+                // Set default value
+                ((DateTimePicker)sender).BorderBrush = SilverSolidBrush;
+                ((DateTimePicker)sender).Foreground = SilverSolidBrush;
+
+                // Delete got focus hendler
+                ((DateTimePicker)sender).GotFocus += DataBirthdayIndividual_GotFocus;
             }
         }
 
-        private void DataBirthdayIndividual_SelectedDateChanged(object sender, RoutedEventArgs e)
+        private void DataBirthdayIndividual_SelectedDataContextChanged(object sender, RoutedEventArgs e)
         {
-            // Check validation enter value
-            bool ResultValidation = true;
-            if (((DatePicker)sender).SelectedDate == null)
+            if (((DateTimePicker)sender).Text == "")
             {
                 CheckValidationDataBirthdayIndividual = false;
             }
             else
             {
-                if (((DatePicker)sender).SelectedDate > DateTime.Today) ResultValidation = false;
+                // For check validation enter value
+                bool ResultValidation = true;
+                // Processing of the results validation
                 if (ResultValidation)
                 {
-                    ((DatePicker)sender).BorderBrush = new SolidColorBrush(Colors.Silver);
-                    ((DatePicker)sender).Foreground = new SolidColorBrush(Colors.Black);
-                    ((DatePicker)sender).FontStyle = FontStyles.Normal;
+                    ((DateTimePicker)sender).BorderBrush = SilverSolidBrush;
                     CheckValidationDataBirthdayIndividual = true;
                 }
                 else
                 {
-                    ((DatePicker)sender).BorderBrush = new SolidColorBrush(Colors.Red);
-                    ((DatePicker)sender).Foreground = new SolidColorBrush(Colors.Black);
-                    ((DatePicker)sender).FontStyle = FontStyles.Normal;
+                    ((DateTimePicker)sender).BorderBrush = RedSolidBrush;
                     CheckValidationDataBirthdayIndividual = false;
                 }
             }
@@ -557,7 +562,7 @@ namespace CompanyApp
                 //
                 // Code
                 //
-                System.Windows.MessageBox.Show(FirstnameIndividual_TextBox.Text + " " + LastnameIndividual_TextBox.Text + " " + ThirdnameIndividual_TextBox.Text + "\n" + SexIndividual_ComboBox.Text + ", " + DataBirthdayIndividual_DatePicker.SelectedDate + "\n" + AddressIndividual_TextBox.Text + "\n" + PhoneIndividual_TextBox.Text + "\n" + DriveExperienceIndividual_TextBox.Text, "Add New CLient", MessageBoxButton.OK, MessageBoxImage.Information);
+                System.Windows.MessageBox.Show(FirstnameIndividual_TextBox.Text + " " + LastnameIndividual_TextBox.Text + " " + ThirdnameIndividual_TextBox.Text + "\n" + SexIndividual_ComboBox.Text + ", " + "\n" + AddressIndividual_TextBox.Text + "\n" + PhoneIndividual_TextBox.Text + "\n" + DriveExperienceIndividual_TextBox.Text, "Add New CLient", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 CloseAllGrid();
                 BackgroundForm.Visibility = Visibility.Visible;
@@ -582,8 +587,8 @@ namespace CompanyApp
                 }
                 else if (!CheckValidationDataBirthdayIndividual)
                 {
-                    DataBirthdayIndividual_DatePicker.Focus();
-                    DataBirthdayIndividual_DatePicker.BorderBrush = new SolidColorBrush(Colors.Red);
+                    DataBirthdayIndividual_DateTimePicker.Focus();
+                    DataBirthdayIndividual_DateTimePicker.BorderBrush = new SolidColorBrush(Colors.Red);
                 }
                 else if (!CheckValidationSexIndividual)
                 {
@@ -628,7 +633,8 @@ namespace CompanyApp
             ThirdnameIndividual_TextBox.Text = "";
             ThirdnameIndividual_LostFocus(ThirdnameIndividual_TextBox, null);
             // Set default data birthday
-            DataBirthdayIndividual_DatePicker.Text = "";
+            DataBirthdayIndividual_DateTimePicker.Text = "";
+            DataBirthdayIndividual_LostFocus(DataBirthdayIndividual_DateTimePicker, null);
             // Set default sex
             SexIndividual_ComboBox.Text = "";
             // Set default address
@@ -645,6 +651,9 @@ namespace CompanyApp
             SourceImgIndividual_LostFocus(SourceImgIndividual_TextBox, null);
             // Set default image
             ImgIndividual_Image.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory.ToString() + "Image\\DefaultImgIndividual.png"));
+
+            
+
             // Set default check value
             CheckValidationFirstnameIndividual = false;
             CheckValidationLastnameIndividual = false;
@@ -660,6 +669,7 @@ namespace CompanyApp
         // Cancel our value
         private void CancelIndividual_Click(object sender, RoutedEventArgs e)
         {
+
             ClearIndividual_Click(null, null);
             // Exit
             CloseAllGrid();
