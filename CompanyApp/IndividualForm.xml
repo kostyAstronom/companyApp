@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<Menu Grid.Column="0" Grid.Row="0">
+                <MenuItem Header="Client">
+                    <MenuItem Header="New client" >
+                        <MenuItem Header="Individual" Click="IndividualForm_Click" />
+                        <MenuItem Header="Company" Click="CompanyForm_Click" />
+                    </MenuItem>
+                    <MenuItem Header="New policy" Click="PolicyForm_Click" />
+                </MenuItem>
+                <MenuItem Header="Category">
+                    <MenuItem Header="New category" Click="CategoryForm_Click" />
+                </MenuItem>
+                <MenuItem Header="Accident">
+                    <MenuItem Header="New accident" Click="AccidentForm_Click" />
+                    <MenuItem Header="Add accident to the client" Click="ClientAccidentForm_Click" />
+                </MenuItem>
+                <MenuItem Header="Info">
+                    <MenuItem Header="Client's info" Click="ClientInfoForm_Click" />
+                    <MenuItem Header="Category info" />
+                    <Separator />
+                    <MenuItem Header="About program" Click="AboutProgram_Click" />
+                </MenuItem>
+            </Menu>

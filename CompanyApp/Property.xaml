@@ -1,0 +1,70 @@
+﻿<Window x:Class="CompanyApp.Property"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CompanyApp"
+        mc:Ignorable="d"
+        Title="Property" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Width="100" Height="25" Grid.Row="0" Background="LightCyan"></TextBlock>
+            <Menu x:Name="menu" Height="Auto" Width="100" Grid.Row="1">
+                <MenuItem Width="100" Height="25" Header="Date property"></MenuItem>
+                <MenuItem Width="100" Height="25" Header="Item property 1"></MenuItem>
+                <MenuItem Width="100" Height="25" Header="Item property 1"></MenuItem>
+                <MenuItem Width="100" Height="25" Header="Item property 1"></MenuItem>
+                <MenuItem Width="100" Height="25" Header="Item property 1"></MenuItem>
+                <MenuItem Width="100" Height="25" Header="Item property 1"></MenuItem>
+                <MenuItem Width="100" Height="25" Header="Item property 1"></MenuItem>
+            </Menu>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition MaxHeight="20"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Center">Date property</TextBlock>
+            <TextBlock Grid.Column="1" Grid.Row="2">Width Calendar:</TextBlock>
+            <TextBox  Grid.Column="1" Grid.Row="3" x:Name="CalendarWidth_TextBox"></TextBox>
+            <TextBlock Grid.Column="1" Grid.Row="5">Format:</TextBlock>
+            <ComboBox Grid.Column="1" Grid.Row="6">
+                <TextBlock>Format 1</TextBlock>
+                <TextBlock>Format 2</TextBlock>
+                <TextBlock>Format 3</TextBlock>
+            </ComboBox>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1" Background="LightBlue">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Margin="5, 5, 5, 5" Click="SaveProperty_Click">Save</Button>
+            <Button Grid.Column="1" Margin="5, 5, 5, 5">Cancler</Button>
+        </Grid>
+
+    </Grid>
+</Window>
